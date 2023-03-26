@@ -1,0 +1,110 @@
+<%- include('./layouts/header') %>
+
+    <%- include('./layouts/navbar') %>
+
+
+            <main class="bg-center h-full bg-cover bg-no-repeat py-32 pb-96 text-white tayy "  >
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="font-bold underline text-center text-white text-3xl py-4">Reserved Bookings</h1>
+                    <form method="POST" class="max-w-4xl mx-auto" action="/res-booking">
+                        <div class="flex justify-center pb-8">
+                            <div class="mb-3 xl:w-96">
+                                <div class="relative flex items-center">
+                                    <input type="text" name="searchTerm"
+                                        class="w-full px-3 py-3 placeholder-gray-400 text-gray-700 relative bg-white rounded-full text-sm border border-gray-400 shadow outline-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                        placeholder="Search for a customer..." aria-label="Search" aria-describedby="button-addon3">
+                                    <button type="submit"
+                                        class="bg-black text-white rounded-full px-6 py-2 ml-2 transition duration-150 ease-in-out hover:bg-opacity-80 focus:outline-none focus:shadow-outline-gray focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                                        type="button" id="button-addon3" data-te-ripple-init>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+               
+
+            <% if (data.length) { %>
+                <% data.sort((a, b)=> new Date(a.date) - new Date(b.date)) %>
+                    <% data.forEach(Customer=> { %>
+                        <div id="myForm"
+                        class="flex flex-col sm:flex-row items-center sm:justify-between sm:px-10 border border-gray-600 bg-gradient-to-t from-black via-black w-11/12 lg:w-5/6 rounded-3xl mt-4 mx-auto">
+                       <div>
+                           <ul class="flex space-x-6 my-4 rounded-sm">
+                               <li>
+                                   Name: <h1><%= Customer.name %></h1>
+                               </li>
+                               <li>
+                                   Slip ID:<h1><%= Customer.slip %></h1>
+                               </li>
+                               <li>
+                                Date:
+                                <h1>
+                                  <% const date = new Date() %>
+                                  <% const formattedDate = new Date(Customer.date).toLocaleDateString() %>
+                                  <%= formattedDate %>
+                                  <% if(new Date(formattedDate) < date) { %>
+                                    <form action="/done/<%= Customer.id %>" method="post">
+                                      <button type="submit" onclick="click()" class="bg-green-600 px-2 py-1 rounded-md">Done</button>
+                                    </form>
+                                  <% } else { %>
+                                    <p class="bg-red-600">Important</p>
+                                  <% } %>
+                                </h1>
+                              </li>
+                           </ul>
+                       </div>
+                       <div class="space-x-6 my-4">
+                        <a href="/data/edit/<%= Customer.id %>"
+                            class="bg-black text-white px-2 py-1 rounded-lg hover:bg-gray-800 hover:text-gray-200 transition-colors duration-300">Edit</a>
+                         
+                           <form action="/data/delete/<%= Customer.id %>?_method=DELETE" method="post" class="inline-block">
+                               <input type="hidden" name="_method" value="DELETE">
+                               <button type="submit" value="delete" class="bg-black block text-white px-2 py-1 rounded-lg hover:text-gray-200 transition-colors duration-300">Delete</button>
+
+                           </form>
+                           <a href="/home/<%= Customer.id %>" class="bg-black text-white px-2 py-1 rounded-lg hover:text-gray-200 transition-colors duration-300">View Detail</a>
+
+                       </div>
+                   </div>
+                   
+                        <% }) %>
+                           
+                                <!-- res-booking.ejs -->
+
+<!-- Display customer data here -->
+
+<!-- Pagination -->
+<!-- Display the list of customers -->
+
+  
+<div class="pagination flex justify-center mt-4">
+    <% if (currentPage > 1) { %>
+      <a href="/res-booking?page=<%= currentPage - 1 %>" class="page-link border rounded-l-md px-3 py-2 bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-100">&laquo; Previous</a>
+    <% } %>
+    
+    <% for (let i = 1; i <= pages; i++) { %>
+      <% if (i === currentPage) { %>
+        <span class="page-link border px-3 py-2 bg-gray-800 text-white"><%= i %></span>
+      <% } else { %>
+        <a href="/res-booking?page=<%= i %>" class="page-link border px-3 py-2 bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-100"><%= i %></a>
+      <% } %>
+    <% } %>
+    
+    <% if (currentPage < pages) { %>
+      <a href="/res-booking?page=<%= currentPage + 1 %>" class="page-link border rounded-r-md px-3 py-2 bg-white text-gray-500 hover:text-gray-700 hover:bg-gray-100">Next &raquo;</a>
+    <% } %>
+  </div>
+  
+  
+  <% } else { %>
+    <p>No customers found</p>
+    <% } %>
+                       
+        </main>
+        <script>
+     
+
+        </script>
+
+        <%- include('./layouts/footer') %>

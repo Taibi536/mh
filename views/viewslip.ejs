@@ -1,0 +1,135 @@
+<%- include('./layouts/header') %>
+    <%- include('./layouts/navbar') %>
+
+ 
+
+        <head>
+            <style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    border: 1px solid black;
+                }
+
+                table td {
+                    line-height: 25px;
+                    padding-left: 15px;
+                }
+
+                table th {
+                    background-color: #fbc403;
+                    color: #363636;
+                }
+            </style>
+
+        </head>
+
+        <body>
+            <table border="1">
+                <tr height="100px"
+                    style="background-color:#363636;color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+                    <td colspan='4'>Marriage HAll NAME</td>
+                </tr>
+                <tr>
+                    <th>Slip No:</th>
+                    <td class="bg-black text-white" > <%=data.slip%></td>
+                    <th>Name Customer</th>
+                    <td> <%=data.name%></td>
+                </tr>
+                <!-----2 row--->
+                <tr>
+                    <th>Phone Number</th>
+                    <td> +92 <%=data.number%></td>
+                    <th>CNIC</th>
+                    <td> <%=data.cnic%></td>
+                </tr>
+                <!------3 row---->
+                <tr>
+                    <th>Sitting Plan</th>
+                    <td><%=data.sitting%></td>
+                    <th>Function type</th>
+                    <td> <%=data.fuction%></td>
+                </tr>
+                <!------4 row---->
+                <tr>
+                    <th>Area type.</th>
+                    <td> <%=data.area%></td>
+                    <th>Event Time</th>
+                    <td> <%=data.t%></td>
+                </tr>
+                <!------5 row---->
+                <tr>
+                    <th>Stage DECO</th>
+                    <td> <%=data.stage%></td>
+                    <!-- <th>Date</th>
+                    <td>30</td> -->
+                </tr>
+                <!------6 row---->
+                <!-- <tr>
+                    <th>Department</th>
+                    <td>IT</td>
+                    <th>Designation</th>
+                    <td>Designer</td>
+                </tr> -->
+            </table>
+            <tr></tr>
+            <br />
+            <table>
+                <h1 class="al" > Amounts</h1>
+                <tr>
+                    <td>Basic</td>
+                    <td><input type="text" placeholder="add Aou" name="" id="value1"></td>
+                    <td>provident fund</td>
+                    <td><input type="text" placeholder="add Aomun" name="" id="value2"></td>
+                </tr>
+                <tr>
+                    <td>House Rent Allowance</td>
+                    <td><input type="text" name="" placeholder="add A" id="value3"></td>
+                    <td>professional tax</td>
+                    <td><input type="text" name="" id="value4"></td>
+                </tr>
+                <tr>
+                    <td>special Allowance</td>
+                    <td><input type="text" name="" id="value5"></td>
+                    <td>Income tax</td>
+                    <td><input type="text" name="" id="value6"></td>
+                </tr>
+                <tr>
+                    <td>conveyance</td>
+                    <td><input type="text" name="" id="value7"></td>
+                </tr>
+                <tr>
+                    <td>ADD Special allowance</td>
+                    <td><input type="text" name="" id="value8"></td>
+                </tr>
+                <tr>
+                    <td>shift Allowance</td>
+                    <td><input type="text" name="" id="value9"></td>
+                </tr>
+                <tr>
+                    <td>bonus</td>
+                    <td><input type="text" name="" id="value10"></td>
+                </tr>
+                <tr>
+                    <td>medical Allowance</td>
+                    <td><input type="text" name="" id="value11"></td>
+                </tr>
+                <tr>
+                    <th>Gross Earnings</th>
+                    <td><input type="text" id="grossEarnings"></td>
+                    <th>Gross Deductions</th>
+                    <td><input type="text" name="" id="value12"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><strong>NET PAY</strong></td>
+                    <td><input type="text" name="" id="netPay"></td>
+                    <td></td>
+                </tr>
+            </table>
+            
+            
+            
+            <input value="print" type="submit" onclick="window.print()" class="bg-black text-white rounded-lg px-2 py-2 my-4 hover:bg-white
+    hover:text-black">
+        <%- include('./layouts/footer') %>
